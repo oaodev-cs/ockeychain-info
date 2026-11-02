@@ -1,0 +1,157 @@
+**This guide was made for toyhou.se users in mind but should work on other sites as well.**
+
+You can now add keychain skins for specific sites that visitors with the extension can also use!
+this is a guide on how to get that set up for free. You will need:
+
+    - a Github account - to host your files
+    - a border image   - the image that frames your keychain
+    - a primary image  - the base image you always see
+    - (optional) a secondary image - the image you see when you click something
+    - a .json file     - which will contain the links to your pictures and other specificities 
+        on how you want your keychain skin to be displayed
+
+
+I recommend using this size guide for your images. 
+They are not strict but its recommended for best display quality. :
+
+    Pendulum & Secondary Images:
+        Recommended Size: 200 x 200 pixels.
+    Border Image:
+        Recommended Size: 300 x 300 pixels.
+
+Rules:
+    - File type allowed : PNG, JPEG or WebP only. No GIF, no SVG, no APNG (animated PNG) and no animated WebP.
+    - Each file must be 1 MB or smaller.
+    - Each picture 1024 pixels wide and tall at most.
+    - Name your files with lowercase letters, numbers and dashes only, like pri-img.png, ocnameskin.json
+      Names are case-sensitive so please avoid spaces as well.
+
+    Tip: a few hundred pixels is plenty. 
+     Smaller pictures make the page run lighter for your visitors.
+     Transparent backgrounds work well in PNG.
+
+
+Now to hosting:
+- first on Github, click the plus sign in the upper right hand side
+    then click 'New Repository'
+- give the Repository a name, for example: ockeychainskins and choose public for the visibility.
+    you can leave the rest on the default and click the 'Create repository' button
+
+- next you can simply upload the images by clicking the 'add file' button, then upload files
+    - I recommend putting your files in a folder and upload the folder (do not zip it) - just drag it into the drop field
+    - next click 'Commit Changes' to save the uploaded folder or file
+
+- finally we can add the .json file. Below is an example of what the file will look like, 
+    -- a dummy template will be provided in the repository as well.
+
+{
+  "name": "ocnameskin"   
+  "anchorColor": "#4aa3df",
+  "candyColor": "#ffffff",
+  "candyEnabled": true,
+  "elementBorderColor": "#4aa3df",
+  "elementBorderEnabled": true,
+  "borderEnabled": true,
+  "pendulumLength": 100,
+  "pendulumSize": 0.4,
+  "pendulumImage": "https://raw.githubusercontent.com/[github_username]/[repository_name]/main/[primary_image_name].png",
+  "borderImage": "https://raw.githubusercontent.com/[github_username]/[repository_name]/main/[border_image_name].png",
+  "secondaryImage": "https://raw.githubusercontent.com/[github_username]/[repository_name]/main/[secondary_image_name].png"
+}
+
+this will be the format of the links in your json:
+https://raw.githubusercontent.com/[github_username]/[repository_name]/main/[image_name].[file_extension]
+
+OR if you used a folder
+
+https://raw.githubusercontent.com/[github_username]/[repository_name]/main/[folder_name]/[image_name].[file_extension]
+
+
+Open that address (with the [brackets] filled with the correct names) in your browser. 
+You should see just the picture but if you see a GitHub page with menus instead, you have gotten the address wrong. 
+
+Select create new file in the 'add file' dropdown button to add it.
+If you are using a folder ensure you navigate into the folder before you create a file.
+
+for the name of the .json file you can match the name with the name field in the template for simplicity.
+
+
+name        -> the skin's name NOT the name of the repository
+
+anchorColor -> the color of the dot that follows your mouse 
+
+candyColor  -> the color of the floating stars 
+
+candyEnabled-> whether you want the stars to appear on your keychain skin or not. [True or False]
+                true for 'yes, you DO want them to appear'
+                false for 'no, you do NOT want them to appear'
+
+elementBorderColor      -> The element border is the simple colored square frame that appears under the border image. 
+                            This field is for the color of that frame.
+
+elementBorderEnabled    -> whether you want the frame to appear on your keychain skin or not. [True or False]
+
+pendulumLength          -> How far you want the keychain to be from the mouse in pixels [10 to 100]
+
+pendulumSize            -> How big you want the keychain to be. [0.1 to 1]
+                            this is increments of 0.1 e.g. [0.1, 0.2, 0.3 ... 0.9, 1]
+                            0.1 = 10% and 1 = 100% of the keychain's size.
+
+
+pendulumImage     -> link to your main image within the repository
+
+borderImage       -> link to your border frame image within the repository
+
+secondaryImage    -> link to your secondary (on click) image within the repository
+
+Please note: for now you can NOT edit the shape of the floating candy.
+
+Tips : 
+
+-   Your branch is called main but sometimes it can be called master.
+    Please confirm what branch you are using if main is not working.
+
+-   About the switches: false always works. true does NOT force something on for
+        a visitor who turned it off in their own settings. They just see a small
+        message saying your skin has it but they have it turned off. Turning the
+        stars off (candyEnabled false) also makes your page lighter for visitors.
+ 
+-   Colors are written as six character hex codes like "#4aa3df".
+        Search "color picker" online to find one.
+        
+-   Use straight quotes ("), not curly quotes. Word processors and some notes
+        apps swap them, which breaks the file.
+
+-   Put a comma at the end of every line EXCEPT the last one.
+
+-   No comments and no extra text.
+
+
+
+Now, once your files are uploaded and your .json file is fully configured 
+navigate to the Settings tab
+on the side menu under the "Code, planning, and automation" section is a Pages button
+- Under 'Build and deployment' ensure your source is set to 'Deploy from a branch'
+- Under Branch select Main and then Save. 
+- It'll take about 5 minutes to deploy your site and give you a link at the top of the page 
+    you may have to refresh the page
+- the link will take you to an error 404 - File not found page unless you set up an index.html file
+    but thats not needed
+
+what you will find is that these type of links will now work and show should show the images the hold:
+
+https://raw.githubusercontent.com/[github_username]/[repository_name]/main/[image_name].[file_extension]
+
+
+now just embed the link on you page with this :
+
+<a class="oc-keychain-skin" href="YOUR JSON ADDRESS">Cursor skin</a>
+
+(you can get the link by going to your json file on github and 
+clicking the 'Raw' button and taking the actual link of the page )
+
+for further reference: 
+
+<p><a class="oc-keychain-skin" href="https://raw.githubusercontent.com/[github_username]/[repository_name]/refs/heads/main/[file_name].json">Cursor skin</a></p>
+
+and voila! it should prompt any visitor that clicks the link about your skin and show them the skin for the site!
