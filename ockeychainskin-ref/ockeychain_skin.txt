@@ -45,7 +45,7 @@ Now to hosting:
     -- a dummy template will be provided in the repository as well.
 
 {
-  "name": "ocnameskin"   
+  "name": "ocnameskin",   
   "anchorColor": "#4aa3df",
   "candyColor": "#ffffff",
   "candyEnabled": true,
